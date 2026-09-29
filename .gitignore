@@ -1,5 +1,8 @@
-# Ship only the page
+# Ship only the pages
 *
-!index.html
-!.nojekyll
 !.gitignore
+!.nojekyll
+!index.html
+!v2/
+v2/*
+!v2/index.html
