@@ -115,11 +115,8 @@ button{font:inherit;color:inherit}
 .facts li::before{content:"";width:7px;height:7px;background:var(--gold);transform:rotate(45deg);flex:none}
 
 /* menu */
-.menu .wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(40px,6vw,110px);align-items:start}
-.menu-img{position:sticky;top:32px;margin:0}
-.menu-img .frame{aspect-ratio:4/5;overflow:hidden}
-.menu-img img{width:100%;height:100%;object-fit:cover}
-.menu-img figcaption{margin-top:14px;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)}
+.menu{background:var(--lime-2)}
+.menu-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(40px,6vw,96px);align-items:start}
 .menu-group{margin-top:56px}
 .menu-group h3{margin:0 0 8px;font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.7rem}
 .menu-group ul{list-style:none;margin:0;padding:0}
@@ -174,6 +171,8 @@ button{font:inherit;color:inherit}
 .q-nav > button{appearance:none;width:48px;height:48px;border:1px solid rgba(237,235,228,.45);background:none;color:var(--on-blue);cursor:pointer;display:grid;place-items:center}
 .q-nav > button:hover{border-color:var(--gold);color:var(--gold)}
 .q-nav svg{width:18px;height:18px}
+.q-nav .q-pause{margin-left:6px;border-color:transparent}
+.q-nav .q-pause:hover{border-color:var(--gold)}
 .q-dots{display:flex;gap:4px}
 .q-dots button{appearance:none;border:0;background:none;width:28px;height:44px;cursor:pointer;display:grid;place-items:center}
 .q-dots button::before{content:"";width:8px;height:8px;border:1px solid var(--gold);transform:rotate(45deg);transition:background-color .2s}
@@ -271,13 +270,11 @@ button{font:inherit;color:inherit}
 @media (max-width: 1000px){
   .nav a.nav-x{display:none}
   .hero .wrap{grid-template-columns:minmax(0,1fr) minmax(0,.8fr)}
-  .menu .wrap{grid-template-columns:1fr}
+  .menu-cols{grid-template-columns:1fr}
   .intro .wrap{grid-template-columns:1fr}
   .intro-art{max-width:560px}
   .visit .wrap > div{grid-template-columns:1fr}
   .visit .wrap > div > .hours{grid-column:1;grid-row:auto;margin-top:48px}
-  .menu-img{position:static;max-width:520px}
-  .menu-img .frame{aspect-ratio:16/10}
   .gallery{grid-template-columns:repeat(3,minmax(0,1fr))}
   .walk .wrap{grid-template-columns:1fr}
 }
@@ -314,6 +311,8 @@ button{font:inherit;color:inherit}
   <symbol id="i-pin" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.4 12 21 12 21z"/><circle cx="12" cy="10" r="2.4" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
   <symbol id="i-kl" viewBox="0 0 300 400" preserveAspectRatio="none"><path d="M44.9 10H255.1A46 46 0 0 0 290 44.9V355.1A46 46 0 0 0 255.1 390H44.9A46 46 0 0 0 10 355.1V44.9A46 46 0 0 0 44.9 10Z" fill="none" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/></symbol>
   <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M9 6v12M15 6v12"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M8 5.5v13l10-6.5z"/></symbol>
   <symbol id="i-l" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M15 5l-7 7 7 7"/></symbol>
   <symbol id="i-r" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></symbol>
 </svg>
@@ -371,15 +370,12 @@ button{font:inherit;color:inherit}
     </div>
   </section>
 
-  <section class="sec menu" id="menu" aria-labelledby="menu-h" style="padding-top:0">
+  <section class="sec menu" id="menu" aria-labelledby="menu-h">
     <div class="wrap">
-      <figure class="menu-img">
-        <div class="frame"><img src="https://images.unsplash.com/photo-1549236177-77e8271c34b6?w=900&amp;q=78&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1549236177-77e8271c34b6?w=600&amp;q=78&amp;auto=format&amp;fit=crop 600w, https://images.unsplash.com/photo-1549236177-77e8271c34b6?w=900&amp;q=78&amp;auto=format&amp;fit=crop 900w" sizes="(max-width:1000px) 520px, 420px" width="900" height="1352" alt="Long curled hair, half pinned up with a jewelled hairpiece" loading="lazy"></div>
-        <figcaption>Hair Up · from $80</figcaption>
-      </figure>
       <div>
         <h2 class="h2" id="menu-h">The <em>menu</em></h2>
         <p class="sub">Every price comes from the salon's own list. Where it says "from", the final price depends on your hair and the look, and we'll talk it through before we start.</p>
+        <div class="menu-cols">
         <div class="menu-group" data-group="Cuts &amp; styling">
           <h3>Cuts &amp; styling</h3>
           <ul>
@@ -406,6 +402,7 @@ button{font:inherit;color:inherit}
             <li data-svc="Ombre / Balayage" data-price="from $155"><span class="nm">Ombre / Balayage</span><span class="dots"></span><span class="pr num"><i>from</i>$155</span><button class="bk" type="button" aria-label="Book Ombre or Balayage">Book</button></li>
             <li data-svc="Full Colour Correction" data-price="from $150"><span class="nm">Full Colour Correction</span><span class="dots"></span><span class="pr num"><i>from</i>$150</span><button class="bk" type="button" aria-label="Book a Full Colour Correction">Book</button></li>
           </ul>
+        </div>
         </div>
         <p class="menu-note">Seniors and students pay $35 for a cut. Not sure what you need? Book a style consultation and we'll work it out together.</p>
       </div>
@@ -473,7 +470,7 @@ button{font:inherit;color:inherit}
       <h2 class="h2" id="rev-h">Kind <em>words</em></h2>
       <span class="ph">Placeholder reviews: replace with real ones</span>
       <div class="q-mark" aria-hidden="true">&ldquo;</div>
-      <div class="q-stack" id="q-stack" aria-live="polite">
+      <div class="q-stack" id="q-stack" aria-live="off">
         <figure class="q is-on"><blockquote>I brought in a photo from my phone and Chris got it straight away. Best my hair has looked in years.</blockquote><figcaption>Client name, Ballarat</figcaption></figure>
         <figure class="q" aria-hidden="true"><blockquote>I walked in on my lunch break without a booking and went back to work with a cut I really love.</blockquote><figcaption>Client name, Ballarat</figcaption></figure>
         <figure class="q" aria-hidden="true"><blockquote>Alana fixed my colour after another salon got it wrong. Honest advice, and I won't go anywhere else.</blockquote><figcaption>Client name, Ballarat</figcaption></figure>
@@ -482,6 +479,7 @@ button{font:inherit;color:inherit}
         <button type="button" id="q-prev" aria-label="Previous review"><svg aria-hidden="true"><use href="#i-l"/></svg></button>
         <div class="q-dots" id="q-dots"><button type="button" aria-label="Review 1" aria-current="true"></button><button type="button" aria-label="Review 2" aria-current="false"></button><button type="button" aria-label="Review 3" aria-current="false"></button></div>
         <button type="button" id="q-next" aria-label="Next review"><svg aria-hidden="true"><use href="#i-r"/></svg></button>
+        <button type="button" id="q-pause" class="q-pause" aria-label="Pause reviews"><svg aria-hidden="true"><use href="#i-pause"/></svg></button>
       </div>
     </div>
   </section>
@@ -592,10 +590,34 @@ button{font:inherit;color:inherit}
 
   /* reviews (placeholders): every quote shares one grid cell, so the section height never changes */
   var qs=[].slice.call(document.querySelectorAll("#q-stack .q")), dots=[].slice.call(document.querySelectorAll("#q-dots button")), qi=0;
+  var qStack=document.getElementById("q-stack"), qSec=qStack.closest("section"), qPause=document.getElementById("q-pause");
+  var ROTATE_MS=6000, qTimer=null, qUserPaused=false, qHold=false, qVisible=false;
   function showQ(i){ qi=(i+qs.length)%qs.length; qs.forEach(function(q,k){ q.classList.toggle("is-on",k===qi); if(k===qi) q.removeAttribute("aria-hidden"); else q.setAttribute("aria-hidden","true"); }); dots.forEach(function(d,k){ d.setAttribute("aria-current",k===qi?"true":"false"); }); }
-  document.getElementById("q-prev").addEventListener("click",function(){showQ(qi-1);});
-  document.getElementById("q-next").addEventListener("click",function(){showQ(qi+1);});
-  dots.forEach(function(d,k){ d.addEventListener("click",function(){ showQ(k); }); });
+  // Auto-rotate only while the section is on screen, the tab is visible, and nobody is hovering, focusing or has paused it.
+  function qSync(){
+    var run = !reduce && !qUserPaused && !qHold && qVisible && !document.hidden;
+    if(run && !qTimer) qTimer=setInterval(function(){ showQ(qi+1); }, ROTATE_MS);
+    if(!run && qTimer){ clearInterval(qTimer); qTimer=null; }
+  }
+  function qRestart(){ if(qTimer){ clearInterval(qTimer); qTimer=null; } qSync(); }
+  function qManual(i){ qStack.setAttribute("aria-live","polite"); showQ(i); qRestart(); }
+  document.getElementById("q-prev").addEventListener("click",function(){ qManual(qi-1); });
+  document.getElementById("q-next").addEventListener("click",function(){ qManual(qi+1); });
+  dots.forEach(function(d,k){ d.addEventListener("click",function(){ qManual(k); }); });
+  if(reduce){ qPause.hidden=true; }
+  qPause.addEventListener("click",function(){
+    qUserPaused=!qUserPaused;
+    qPause.setAttribute("aria-label", qUserPaused?"Play reviews":"Pause reviews");
+    qPause.querySelector("use").setAttribute("href", qUserPaused?"#i-play":"#i-pause");
+    qSync();
+  });
+  qSec.addEventListener("mouseenter",function(){ qHold=true; qSync(); });
+  qSec.addEventListener("mouseleave",function(){ qHold=false; qSync(); });
+  qSec.addEventListener("focusin",function(){ qHold=true; qSync(); });
+  qSec.addEventListener("focusout",function(e){ if(!qSec.contains(e.relatedTarget)){ qHold=false; qSync(); } });
+  document.addEventListener("visibilitychange", qSync);
+  if("IntersectionObserver" in window){ new IntersectionObserver(function(en){ qVisible=en[0].isIntersecting; qSync(); },{threshold:.35}).observe(qSec); }
+  else { qVisible=true; qSync(); }
 
   /* booking */
   var STEPS = ["service","stylist","day","time","details"];
